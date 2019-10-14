@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1515240197 source:c:\users\swat\desktop\c++\licznik bmi\main.cpp
-	<iostream>
-	<Windows.h>
-
-1570714648 source:f:\c++\licznik bmi\main.cpp
-	<iostream>
-	<Windows.h>
-

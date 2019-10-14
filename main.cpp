@@ -1,110 +1,60 @@
 #include <iostream>
-#include <Windows.h>
+#include <string>
+#include <cmath>
+#include <conio.h>
+#include <math.h>
 
 using namespace std;
 
-int waga, wzrost;
-float BMI;
-char znaki[2]={'A', 'a'};
+float odpowiedz1, odpowiedz2, BMI;
 
 
-
-void podanie_wzrostu()
+int zapytaj_o_liczbe_wzrostu(const string &pytanie1, int odIluWzrost, int doIluWzrost)
 {
-    cout<<"Podaj swoj wzrost w (cm): ";
-    cin >> wzrost;
-
-
-        while((wzrost < 40) || (wzrost > 300 ))
-             {
-
-        MessageBox( NULL,  "Nieprawidlowy wzrost. Kliknij OK aby sprobowac ponownie", "Wiadomosc", MB_ICONINFORMATION | MB_OK | MB_APPLMODAL);
-             cout<< "Podales nieprawidlowy wzrost. Sprobuj ponownie podajac prawidlowy wzrost!"<<endl;
-           }
-
-
+    cout << pytanie1;
+    for(;;)
+    {
+        cin >> odpowiedz1;
+        if((odpowiedz1 >= odIluWzrost) and (odpowiedz1 <= doIluWzrost)) break;
+        else cout << "Wzrost musi sie miescic w przedziale od " << odIluWzrost << " do " << doIluWzrost;
+    }
+    return odpowiedz1;
 }
-
-void sprawdzenie_czy_niezostal_wpisany_znak()
+int zapytaj_o_liczbe_wagi(const string &pytanie2, int odIluWaga, int doIluWaga)
 {
-
-
-    if(wzrost == znaki[2])
-        {
-        cout<<"Podaj prawidlowy wzrost! Pamietaj aby nie podawac znakow! "<<endl;
-        cin >> wzrost;
-        podanie_wzrostu();
-        }
-
+    cout << pytanie2;
+    for(;;)
+    {
+        cin >> odpowiedz2;
+        if((odpowiedz2 >= odIluWaga) and (odpowiedz2 <= doIluWaga)) break;
+        else cout << "Waga musi sie miescic w przedziale od " << odIluWaga << " do " << doIluWaga;
+    }
+    return odpowiedz2;
 }
+ void liczBMI()
+    {
+        BMI = odpowiedz2 / (odpowiedz1*odpowiedz1/10000.);
+        cout << "Twoje BMI jest rowne: " << BMI << endl;
+    }
 
-void podanie_wagi()
+void sprawdzBMI()
 {
-    cout<<"Podaj swoja wage: "<<endl;
-    cin >> waga;
+    if(BMI < 16 ) cout << "Wyglodzenie. Bardzo skrajne. Zacznij jesc!" << endl;
+    if(BMI >= 16 && BMI < 16.99) cout << "Twoj organizm jest wychudzony!" << endl;
+    if(BMI >= 17 && BMI < 18.49) cout << "Masz niedowage, zacznij jesc"<< endl;
+    if(BMI >=18.5 && BMI <24.99) cout << "Twoje BMI jest IDEALNE!"<<endl;
+    if(BMI >=25.0 && BMI <29.99) cout << "Masz nadwage! Schudnij troche przyjacielu :D"<<endl;
+    if(BMI >=30.0 && BMI <34.99) cout << "Masz I stopien otylosci! Czas sie przebadac"<<endl;
+    if(BMI >=35.0 && BMI <39.99) cout << "Masz II stopien otylosci! Przebadaj sie koniecznie i zacznij sie ruszac!"<<endl;
+    if(BMI >=40) cout << "III stopien otylosci! Jest to otylosc skrajna. Jak najszybciej udaj sie do lekarza na niezbedne badania i do dietetyka!"<<endl;
 
-    while((waga < 30) || (waga > 500))
-    {
-        MessageBox( NULL,  "Nieprawidlowa waga. Kliknij OK aby sprobowac ponownie", "Wiadomoœæ", MB_ICONINFORMATION | MB_OK | MB_APPLMODAL);
-        cout << "Podales nieprawidlowa wage. Sprobuj ponownie podajac prawidlowa wage!"<<endl;
-        cin >> waga;
-    }
-}
-
-
-void dzialanie_BMI()
-{
-    BMI = waga / (wzrost*wzrost/10000.);
-    cout << "Twoje BMI wynosi: "<<endl;
-    cout << BMI;
-
-}
-
-void sprawdzanie_poprawnosci_BMI()
-{
-
-
-    if(BMI < 16)
-    {
-        cout<<endl;
-        cout<< "oznacza wyglodzenie. ¯ycie takiej osoby jest zagro¿one!"<<endl;
-    }
-    if(BMI < 18 && BMI > 15)
-    {
-        cout<<endl;
-        cout << "Masz niedowage! Skorzystaj z bardziej tluszczowej diety." << endl;
-    }
-
-    if(BMI > 18 && BMI < 25)
-    {
-        cout<<endl;
-        cout << "Twoje BMI jest idealne!" << endl;
-    }
-
-    if(BMI > 25 && BMI < 30)
-    {
-        cout<<endl;
-        cout << "Masz nadwage! Skorzystaj z diety." << endl;
-    }
-
-    if(BMI > 30 && BMI < 35)
-    {
-        cout << "Jestes otyly! Zrzuc pare kilo i bedzie ok." << endl;
-    }
 }
 int main()
 {
-podanie_wzrostu();
-   sprawdzenie_czy_niezostal_wpisany_znak();
-   podanie_wagi();
+    zapytaj_o_liczbe_wzrostu("Podaj wzrost: ",120,220);
+    zapytaj_o_liczbe_wagi("Podaj wage: ",50,300);
+    liczBMI();
+    sprawdzBMI();
 
-   dzialanie_BMI();
-
-   cout << endl;
-
-   sprawdzanie_poprawnosci_BMI();
-
-
-    system("PAUSE");
     return 0;
 }

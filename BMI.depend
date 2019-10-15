@@ -1,8 +1,5 @@
 # depslib dependency file v1.0
-1571043536 source:c:\users\xyz\desktop\bmi\main.cpp
+1571146387 source:c:\users\xyz\desktop\bmi\main.cpp
 	<iostream>
 	<string>
-	<cmath>
-	<conio.h>
-	<math.h>
 
